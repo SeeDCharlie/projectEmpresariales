@@ -1,0 +1,96 @@
+package co.edu.usbcali.viajes.app.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import co.edu.usbcali.viajes.app.domain.Destino;
+import co.edu.usbcali.viajes.app.repository.DestinoRepository;
+
+@Service
+public class DestinoServiceImpl implements DestinoService{
+	
+	
+	@Autowired
+	private DestinoRepository destinoRepository;
+
+	@Override
+	public void guardarDestino(Destino destino) throws Exception {
+		
+		if(destino==null) {
+			throw new Exception("Debe ingresar un destino");
+		}
+		if(destino.getCodigo() == null || destino.getCodigo().equals("")) {
+			throw new Exception("Debe ingresar un codigo de destino valido");
+		}
+		if(destino.getNombre() == "" || destino.getNombre() == null) {
+			throw new Exception("Debe ingresar un nombre de destino valido");
+		}
+		if(destino.getDescripcion() == "" || destino.getDescripcion() == null) {
+			throw new Exception("Debe ingresar una descripcion de destino valido");
+		}
+		if(destino.getTierra() == "" || destino.getTierra() == null || destino.getTierra().length() > 1 ) {
+			throw new Exception("Debe decir si hay tierra en el destino");
+		}
+		if(destino.getAire() == "" || destino.getAire() == null || destino.getAire().length() > 1 ) {
+			throw new Exception("Debe decir si hay aire en el destino");
+		}
+		if(destino.getMar() == "" || destino.getMar() == null || destino.getMar().length() > 1 ) {
+			throw new Exception("Debe decir si hay mar en el destino");
+		}
+		if(destino.getFechaCreacion() == null || destino.getFechaModificacion() == null) {
+			throw new Exception("Debe ingresar una fecha de creacion y ultima modificacion para el destino");
+		}
+		if(destino.getUsuCreador() == null || destino.getUsuCreador() == "" || destino.getUsuCreador().length() > 10) {
+			throw new Exception("Debe ingresar un usuario creador valido para el destino");
+		}
+		if(destino.getUsuModificador() == "" || destino.getUsuModificador().length() > 10) {
+			throw new Exception("Debe ingresar un usuario modificador valido para el destino");
+		}
+		if(destino.getEstado() == null || destino.getEstado() == "" || destino.getEstado().length() > 1) {
+			throw new Exception("Debe ingresar un estado valido para el destino");
+		}
+		if(destino.getTipoDestino() == null) {
+			throw new Exception("Debe ingresar un tipo destino valido para el destino");
+		}else {
+			try {
+				destinoRepository.save(destino);
+				System.out.print("destino guardado : " + destino.getNombre());
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
+		}
+		
+
+	}
+
+	@Override
+	public void eliminarDestino(Destino destino) throws Exception {
+		if(destino == null) {
+			throw new Exception("Debe ingresar un destino");
+		}
+		else {
+			try {
+				destinoRepository.deleteById(destino.getIdDest());
+				System.out.print("destino eliminado");
+			} catch (Exception e) {
+				throw new Exception(e.getMessage());
+			}
+		}
+		
+	}
+
+	@Override
+	public void actualizarDestino(Destino destino) throws Exception {
+		this.guardarDestino(destino);
+	}
+
+	@Override
+	public void consultarDestino(int idDestino) throws Exception {
+		if(idDestino == null) {
+			throw new Exception("Debe ingresar un id valido para el destino");
+		}
+		
+	}
+
+
+}

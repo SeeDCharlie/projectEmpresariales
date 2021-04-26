@@ -1,0 +1,78 @@
+package co.edu.usbcali.viajes.app.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import co.edu.usbcali.viajes.app.domain.TipoIdentificacion;
+import co.edu.usbcali.viajes.app.repository.TipoIdentificacionRepository;
+
+
+public class TipoIdentificacionServiceImpl implements TipoIdentificacionService{
+	
+	@Autowired
+	private TipoIdentificacionRepository tipoIdeDestinoRepository;
+
+	@Override
+	public void guardarTipoIdentificacion(TipoIdentificacion tipoIdentificacion) throws Exception {
+		
+		if(tipoIdentificacion.getIdTiid().equals("") || tipoIdentificacion.getIdTiid() < 1 ) {
+			throw new Exception("id no valido" );
+		}
+		if(tipoIdentificacion.getCodigo().equals("") || tipoIdentificacion.getCodigo().equals("") || tipoIdentificacion.getCodigo().length() > 5) {
+			throw new Exception("codigo no valido" );	
+		}
+		if(tipoIdentificacion.getNombre().equals("") || tipoIdentificacion.getNombre().equals("") || tipoIdentificacion.getNombre().length() > 100 ) {
+			throw new Exception("Nombre no valido" );
+		}
+		if(tipoIdentificacion.getFechaCreacion().equals("") ) {
+			throw new Exception("FechaCreacion no valido" );
+		}
+		if(tipoIdentificacion.getFechaModificacion().equals("")) {
+			throw new Exception("FechaModificacion no valido" );
+		}
+		if(tipoIdentificacion.getUsuCreador().equals("") || tipoIdentificacion.getUsuCreador().equals("") || tipoIdentificacion.getUsuCreador().length() > 10) {
+			throw new Exception("UsuCreador no valido" );
+		}
+		if(tipoIdentificacion.getUsuModificador().equals("") || tipoIdentificacion.getUsuModificador().equals("") || tipoIdentificacion.getUsuModificador().length() > 10) {
+			throw new Exception("UsuModificador no valido" );
+		}
+		if(tipoIdentificacion.getEstado().equals("") || tipoIdentificacion.getEstado().equals("") || tipoIdentificacion.getEstado().length() > 1 ) {
+			throw new Exception("Estado no valido" );
+		}
+		try {
+			tipoIdeDestinoRepository.save(tipoIdentificacion);
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+	}
+
+
+	@Override
+	public void actualizarTipoIdentificacion(TipoIdentificacion tipoIdentificacion) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<TipoIdentificacion> consultarTipoIdentificacion() throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void eliminarTipoIdentificacion(TipoIdentificacion idTipoIdentificacion) throws Exception {
+		
+		if( idTipoIdentificacion == null ) {
+			throw new Exception("TipoIdentificacion no valido" );
+		}
+		try {
+			tipoIdeDestinoRepository.delete(idTipoIdentificacion);
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+		
+	}
+
+}

@@ -1,0 +1,17 @@
+package co.edu.usbcali.viajes.app.service;
+
+import java.util.List;
+
+import co.edu.usbcali.viajes.app.domain.Destino;
+import co.edu.usbcali.viajes.app.domain.TipoDestino;
+
+public interface TipoDestinoService {
+
+	public void guardarTipoDestino(TipoDestino destino) throws Exception;
+
+	public void eliminarTipoDestino(TipoDestino destino) throws Exception;
+
+	public void actualizarTipoDestino(TipoDestino destino) throws Exception;
+
+	public List<TipoDestino> consultarTiposDestino() throws Exception;
+}
