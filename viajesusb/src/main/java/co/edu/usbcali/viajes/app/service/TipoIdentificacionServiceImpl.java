@@ -22,9 +22,7 @@ public class TipoIdentificacionServiceImpl implements TipoIdentificacionService 
 		if (tipoIdentificacion == null) {
 			throw new Exception("el tipo de indentificacion no es valido");
 		}
-		if (tipoIdentificacion.getIdTiid() == null) {
-			throw new Exception("id no es valido o ya existe");
-		}
+		
 		if (tipoIdentificacion.getCodigo() == null || tipoIdentificacion.getCodigo().equals("")
 				|| tipoIdentificacion.getCodigo().length() > 5) {
 			throw new Exception("codigo no valido");
@@ -46,7 +44,7 @@ public class TipoIdentificacionServiceImpl implements TipoIdentificacionService 
 		}
 		try {
 			tipoIdentificacionRepository.save(tipoIdentificacion);
-			System.out.print("tipo identificacion guardado");
+			System.out.println("tipo identificacion guardado");
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
@@ -92,7 +90,7 @@ public class TipoIdentificacionServiceImpl implements TipoIdentificacionService 
 				}
 				try {
 					tipoIdentificacionRepository.save(tipoIdentificacion);
-					System.out.print("tipo identificacion actualizado");
+					System.out.println("tipo identificacion actualizado");
 				} catch (Exception e) {
 					throw new Exception(e.getMessage());
 				}
