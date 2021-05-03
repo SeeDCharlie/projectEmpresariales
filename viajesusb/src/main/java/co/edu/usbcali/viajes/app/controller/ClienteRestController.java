@@ -56,10 +56,12 @@ public class ClienteRestController {
 
 			try {
 				TipoIdentificacion ti = tipoIdentificacionService.consultarTipoIdentificacionById(cliente.getTipoIdentificacion());
+				
 				Cliente cli = new Cliente(null, cliente.getNumeroIdentificacion(), cliente.getPrimerApellido(), 
 						cliente.getSegundoApellido(),cliente.getNombre(), cliente.getTelefono1(), cliente.getTelefono2(),
 						cliente.getCorreo(), cliente.getSexo(), cliente.getFechaNacimiento(),
 						cliente.getFechaCreacion(), null, cliente.getUsuCreador(), null, cliente.getEstado(), ti );
+				
 				clienteService.guardarCliente(cli);
 				return ResponseEntity.ok().body(cliente);
 			} catch (Exception e) {
@@ -72,10 +74,12 @@ public class ClienteRestController {
 
 			try {
 				TipoIdentificacion ti = tipoIdentificacionService.consultarTipoIdentificacionById(cliente.getTipoIdentificacion());
+				
 				Cliente cli = new Cliente(cliente.getIdClie(), cliente.getNumeroIdentificacion(), cliente.getPrimerApellido(), 
 						cliente.getSegundoApellido(),cliente.getNombre(), cliente.getTelefono1(), cliente.getTelefono2(),
 						cliente.getCorreo(), cliente.getSexo(), cliente.getFechaNacimiento(),
 						cliente.getFechaCreacion(), cliente.getFechaModificacion(), cliente.getUsuCreador(), cliente.getUsuModificador(), cliente.getEstado(), ti );
+				
 				clienteService.actualizarCliente(cli);
 				return ResponseEntity.ok().body(cliente);
 			} catch (Exception e) {
