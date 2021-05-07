@@ -4,11 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import co.edu.usbcali.viajes.app.domain.Usuario;
 import co.edu.usbcali.viajes.app.repository.UsuarioRepository;
 import net.bytebuddy.implementation.bytecode.Throw;
 
+
+@Service
 public class UsuarioServiceImpl implements UsuarioService {
 	
 	@Autowired

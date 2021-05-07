@@ -61,6 +61,16 @@ public class UsuarioController {
 		}
 	}
 	
+	@GetMapping("/getUsuarioPorId")
+	public ResponseEntity<?> buscarPlanPorId(@RequestParam("idUsuario") Integer id) {
+
+		try {
+			return ResponseEntity.ok().body(usuarioService.consultarUsuarioById(id));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+		}
+	}
+	
 	@DeleteMapping("/eliminarUsuario")
 	public ResponseEntity<?> eliminarUsuario(@RequestParam("idUsuario") Integer idUsuario) {
 		try {

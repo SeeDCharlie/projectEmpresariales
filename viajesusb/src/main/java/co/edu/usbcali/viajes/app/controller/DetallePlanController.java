@@ -26,7 +26,7 @@ import co.edu.usbcali.viajes.app.service.UsuarioServiceImpl;
 
 
 @RestController
-@RequestMapping("/api/detalleDetallePlan")
+@RequestMapping("/api/detallePlan")
 public class DetallePlanController {
 	
 	@Autowired
@@ -76,7 +76,7 @@ public class DetallePlanController {
 		}
 	}
 	
-	@GetMapping("/getDetallePlans")
+	@GetMapping("/getDetallePlan")
 	public ResponseEntity<?> getDetallePlans() {
 		try {
 			return ResponseEntity.ok().body(detallePlanService.consultarTodosDetallePlan());
@@ -90,6 +90,16 @@ public class DetallePlanController {
 		try {
 			detallePlanService.eliminarDetallePlan(idDetallePlan);
 			return ResponseEntity.ok().body("DetallePlan eliminado : " + idDetallePlan);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+		}
+	}
+	
+	@GetMapping("/getDetallePlanPorId")
+	public ResponseEntity<?> buscarPlanPorId(@RequestParam("idDetallePlan") Integer id) {
+
+		try {
+			return ResponseEntity.ok().body(detallePlanService.consultarDetallePlanPorId(id));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}

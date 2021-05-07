@@ -84,5 +84,15 @@ public class PlanController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
 	}
+	
+	@GetMapping("/getPlanPorId")
+	public ResponseEntity<?> buscarPlanPorId(@RequestParam("idPlan") Integer id) {
+
+		try {
+			return ResponseEntity.ok().body(planService.consultarPlanPorId(id));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+		}
+	}
 
 }

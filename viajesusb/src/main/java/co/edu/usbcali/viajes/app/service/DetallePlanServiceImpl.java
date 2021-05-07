@@ -4,12 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import co.edu.usbcali.viajes.app.domain.Destino;
 import co.edu.usbcali.viajes.app.domain.DetallePlan;
 import co.edu.usbcali.viajes.app.domain.Plan;
 import co.edu.usbcali.viajes.app.repository.DetallePlanRepository;
 
+@Service
 public class DetallePlanServiceImpl implements DetallePlanService {
 
 	@Autowired

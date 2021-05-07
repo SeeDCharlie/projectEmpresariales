@@ -3,7 +3,6 @@ package co.edu.usbcali.viajes.app.service;
 import java.util.List;
 
 import co.edu.usbcali.viajes.app.domain.Cliente;
-import co.edu.usbcali.viajes.app.domain.Destino;
 
 public interface ClienteService {
 	
