@@ -1,10 +1,10 @@
-package co.co.banco.app;
+package co.edu.usbcali.viajes.app.test;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BancoApplicationTests {
+class ViajesAplicationTest {
 
 	@Test
 	void contextLoads() {

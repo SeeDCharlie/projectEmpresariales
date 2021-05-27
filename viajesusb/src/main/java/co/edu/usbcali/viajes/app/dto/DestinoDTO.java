@@ -129,6 +129,14 @@ public class DestinoDTO implements Serializable{
 	public void setTipoDestinoCodigo(String tipoDestinoCodigo) {
 		this.tipoDestinoCodigo = tipoDestinoCodigo;
 	}
+	@Override
+	public String toString() {
+		return "DestinoDTO [idDest=" + idDest + ", nombre=" + nombre + ", codigo=" + codigo + ", descripcion="
+				+ descripcion + ", tierra=" + tierra + ", aire=" + aire + ", mar=" + mar + ", fechaCreacion="
+				+ fechaCreacion + ", fechaModificacion=" + fechaModificacion + ", usuCreador=" + usuCreador
+				+ ", usuModificador=" + usuModificador + ", estado=" + estado + ", tipoDestinoId=" + tipoDestinoId
+				+ ", tipoDestinoCodigo=" + tipoDestinoCodigo + "]";
+	}
 	
 	
 
