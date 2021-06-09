@@ -37,7 +37,7 @@ public class DestinoDTO implements Serializable{
 	private String usuCreador;
 	private String usuModificador;
 	private String estado;
-	private Integer tipoDestinoId;
+	private TipoDestinoDTO tipoDestino;
 	private String tipoDestinoCodigo;
 	
 	
@@ -117,11 +117,11 @@ public class DestinoDTO implements Serializable{
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public Integer getTipoDestinoId() {
-		return tipoDestinoId;
+	public TipoDestinoDTO getTipoDestino() {
+		return tipoDestino;
 	}
-	public void setTipoDestinoId(Integer tipoDestinoId) {
-		this.tipoDestinoId = tipoDestinoId;
+	public void setTipoDestino(TipoDestinoDTO tipoDestinoId) {
+		this.tipoDestino = tipoDestinoId;
 	}
 	public String getTipoDestinoCodigo() {
 		return tipoDestinoCodigo;
@@ -134,7 +134,7 @@ public class DestinoDTO implements Serializable{
 		return "DestinoDTO [idDest=" + idDest + ", nombre=" + nombre + ", codigo=" + codigo + ", descripcion="
 				+ descripcion + ", tierra=" + tierra + ", aire=" + aire + ", mar=" + mar + ", fechaCreacion="
 				+ fechaCreacion + ", fechaModificacion=" + fechaModificacion + ", usuCreador=" + usuCreador
-				+ ", usuModificador=" + usuModificador + ", estado=" + estado + ", tipoDestinoId=" + tipoDestinoId
+				+ ", usuModificador=" + usuModificador + ", estado=" + estado + ", tipoDestinoId=" + tipoDestino
 				+ ", tipoDestinoCodigo=" + tipoDestinoCodigo + "]";
 	}
 	

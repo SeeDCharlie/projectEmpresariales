@@ -1,5 +1,7 @@
 package co.edu.usbcali.viajes.app.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -78,6 +80,15 @@ public class UsuarioController {
 		try {
 			usuarioService.eliminarUsuario(idUsuario);
 			return ResponseEntity.ok().body("Usuario eliminado : " + idUsuario);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+		}
+	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<?> loginUsuario(@RequestBody UsuarioDTO usuario) {
+		try {
+			return ResponseEntity.ok().body(usuarioService.loggin(usuario));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}

@@ -17,6 +17,7 @@ import co.edu.usbcali.viajes.app.domain.Destino;
 import co.edu.usbcali.viajes.app.domain.TipoDestino;
 import co.edu.usbcali.viajes.app.dto.DestinoDTO;
 import co.edu.usbcali.viajes.app.dto.TipoDestinoDTO;
+import co.edu.usbcali.viajes.app.mapper.DestinoMapper;
 import co.edu.usbcali.viajes.app.service.DestinoServiceImpl;
 import co.edu.usbcali.viajes.app.service.TipoDestinoServiceImpl;
 
@@ -31,16 +32,22 @@ public class DestinoRestController {
 	@Autowired
 	private TipoDestinoServiceImpl tipoDestinoService;
 	
+	@Autowired
+	private DestinoMapper destinoMapper;
+	
 	@PostMapping("/guardarDestino")
 	public ResponseEntity<?> guardarDestino(@RequestBody DestinoDTO destino) {
 		try {
 			
-			TipoDestino td = tipoDestinoService.consultarTiposDestinoPorCodigo(destino.getTipoDestinoCodigo());
+			TipoDestino td = tipoDestinoService.consultarTiposDestinoPorCodigo(destino.getTipoDestino().getCodigo());
+			System.out.println("codigo tipo destino t : " + td.getCodigo());
 			Destino destinoObj = new Destino(destino.getIdDest(),destino.getNombre() , destino.getCodigo(), destino.getDescripcion(), destino.getTierra(),
 					destino.getAire(), destino.getMar(), destino.getFechaCreacion(), destino.getFechaModificacion(), destino.getUsuCreador(), destino.getUsuModificador(),
 					destino.getEstado(), td);
 			destinoService.guardarDestino(destinoObj);
-			return ResponseEntity.ok().body(destino);
+			
+			
+			return ResponseEntity.ok().body(destinoMapper.destinoToDestinoDTO(destinoObj));
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
@@ -50,7 +57,7 @@ public class DestinoRestController {
 	public ResponseEntity<?> actualizarDestino(@RequestBody DestinoDTO destino) {
 		try {
 			
-			TipoDestino td = tipoDestinoService.consultarTiposDestinoPorCodigo(destino.getTipoDestinoCodigo());
+			TipoDestino td = tipoDestinoService.consultarTipoDestinoPorId(destino.getTipoDestino().getIdTide());
 			Destino destinoObj = new Destino(destino.getIdDest(),destino.getNombre() , destino.getCodigo(), destino.getDescripcion(), destino.getTierra(),
 					destino.getAire(), destino.getMar(), destino.getFechaCreacion(), destino.getFechaModificacion(), destino.getUsuCreador(), destino.getUsuModificador(),
 					destino.getEstado(), td);

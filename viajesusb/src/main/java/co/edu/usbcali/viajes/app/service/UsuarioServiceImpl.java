@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.edu.usbcali.viajes.app.domain.Usuario;
+import co.edu.usbcali.viajes.app.dto.UsuarioDTO;
 import co.edu.usbcali.viajes.app.repository.UsuarioRepository;
 import net.bytebuddy.implementation.bytecode.Throw;
 
@@ -20,6 +21,12 @@ public class UsuarioServiceImpl implements UsuarioService {
 	@Override
 	public void guardarUsuario(Usuario usuario) throws Exception {
 		// TODO Auto-generated method stub
+		
+		List<Usuario> usrsByLogin = usuarioRepository.findByLogin(usuario.getLogin());
+		
+		if (!usrsByLogin.isEmpty()) {
+			throw new Exception("el nombre del login ya existe");
+		}		
 		if(usuario.getLogin().equals("") || usuario.getLogin().equals(null) || usuario.getLogin().length() > 10 ) {
 			throw new Exception("login incorrecto");
 		}
@@ -127,6 +134,22 @@ public class UsuarioServiceImpl implements UsuarioService {
 		}else {
 			return usuarios;
 		}
+	}
+
+	@Override
+	public Usuario loggin(UsuarioDTO usr) throws Exception {
+		List<Usuario> usrExist = usuarioRepository.findByLogin(usr.getLogin() );
+		
+		if(usrExist.isEmpty()) {
+			throw new Exception("El usuario no existe");
+		}
+		Usuario usrLogin = usrExist.get(0);
+		
+		if (!usr.getPassword().equals(usrLogin.getPassword())) {
+			throw new Exception("Contraseña incorrecta");
+		}
+		
+		return usrExist.get(0);
 	}
 
 }

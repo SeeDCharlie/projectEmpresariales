@@ -9,12 +9,12 @@ import co.edu.usbcali.viajes.app.dto.DestinoDTO;
 @Mapper(componentModel = "spring")
 public interface DestinoMapper {
 
-	@Mapping(source = "tipoDestino.idTide",target = "tipoDestinoId")
+	@Mapping(source = "tipoDestino.idTide",target = "tipoDestino.idTide")
 	@Mapping(source = "tipoDestino.codigo",target = "tipoDestinoCodigo")
 	public DestinoDTO destinoToDestinoDTO(Destino destino);
 	
 	
-	@Mapping(source = "tipoDestinoId",target = "tipoDestino.idTide")
+	@Mapping(source = "tipoDestino.idTide",target = "tipoDestino.idTide")
 	@Mapping(source = "tipoDestinoCodigo",target = "tipoDestino.codigo")
 	public Destino destinoDTOToDestino(DestinoDTO destino);
 }
