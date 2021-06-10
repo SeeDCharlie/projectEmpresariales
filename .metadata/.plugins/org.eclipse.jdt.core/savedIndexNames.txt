@@ -54,7 +54,6 @@ INDEX VERSION 1.131+/home/seed/Documentos/empresariales_2021-1/projectEmpresaria
 781204588.index
 2716326930.index
 707808480.index
-1218653500.index
 1455746636.index
 1945403294.index
 3569592988.index

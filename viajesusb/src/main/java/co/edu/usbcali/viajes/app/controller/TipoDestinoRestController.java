@@ -1,6 +1,8 @@
 package co.edu.usbcali.viajes.app.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -78,7 +80,12 @@ public class TipoDestinoRestController {
 		try {
 
 			tipoDestinoDestinoService.eliminarTipoDestino(idTd);
-			return ResponseEntity.ok().body("tipo destino eliminado : " + idTd);
+			
+			Map<String, String> map = new HashMap(); // use new HashMap<String, Object>(); for single result
+
+		    map.put("mensaje", "tipo destino eliminado : " + idTd);
+
+			return ResponseEntity.ok().body(map);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
