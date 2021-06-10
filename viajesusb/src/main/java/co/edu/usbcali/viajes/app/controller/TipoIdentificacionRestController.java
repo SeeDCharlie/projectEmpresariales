@@ -1,5 +1,8 @@
 package co.edu.usbcali.viajes.app.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -77,7 +80,9 @@ public class TipoIdentificacionRestController {
 
 		try {
 			tipoIdentificacionService.eliminarTipoIdentificacion(idTipoIdent);
-			return ResponseEntity.ok().body("tipo de identificacion eliminado : " + idTipoIdent);
+			Map<String, String> dats = new HashMap(); 
+		    dats.put("mensaje", "tipo identificacion eliminado : " + idTipoIdent);
+			return ResponseEntity.ok().body(dats);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}

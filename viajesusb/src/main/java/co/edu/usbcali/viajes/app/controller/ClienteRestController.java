@@ -1,5 +1,8 @@
 package co.edu.usbcali.viajes.app.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -93,7 +96,9 @@ public class ClienteRestController {
 
 			try {
 				clienteService.eliminarCliente(idCli);
-				return ResponseEntity.ok().body("Cliente eliminado : " + idCli );
+				Map<String, String> dats = new HashMap<>();
+				dats.put("mensaje", "Cliente eliminado : " + idCli );
+				return ResponseEntity.ok().body(dats);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 			}

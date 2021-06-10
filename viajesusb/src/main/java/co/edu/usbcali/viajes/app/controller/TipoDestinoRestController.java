@@ -81,7 +81,7 @@ public class TipoDestinoRestController {
 
 			tipoDestinoDestinoService.eliminarTipoDestino(idTd);
 			
-			Map<String, String> map = new HashMap(); // use new HashMap<String, Object>(); for single result
+			Map<String, String> map = new HashMap(); 
 
 		    map.put("mensaje", "tipo destino eliminado : " + idTd);
 
